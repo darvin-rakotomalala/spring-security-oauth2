@@ -1,0 +1,67 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+          batch_size: '50'
+    hibernate:
+      ddl-auto: 'update'
+  datasource:
+    driverClassName: org.postgresql.Driver
+    password: '@postgresql.password@'
+    username: '@postgresql.username@'
+    url: '@postgresql.url@'
+  profiles:
+    active: LOCAL
+  main:
+    lazy-initialization: 'true'
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    throw-exception-if-no-handler-found: 'true'
+  resources:
+    add-mappings: 'false'
+cors:
+  allowed:
+    origins: '*'
+application:
+  description: '@project.description@'
+  name: '@project.artifactId@'
+build:
+  timestamp: '@maven.build.timestamp@'
+  version: '@project.version@'
+modules:
+  logging:
+    logs:
+      folder:
+        path: ./logs
+    application:
+      name: '@project.artifactId@'
+server:
+  port: '8081'
+logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
+        SQL: DEBUG
+
+security:
+  oauth2:
+    resource:
+      filter-order: '3'
+
+auth:
+  grantTypePassword: password
+  trust: trust
+  clientId: oauth2-client
+  scopeRead: read
+  implicit: implicit
+  authorizationCode: authorization_code
+  clientSecret: $2a$04$hoLRv9fWBpklAQFpP5xkqeD3/swPyH0gOm5xdQqy1MTmy.JQcdj0e
+  scopeWrite: write
+  refreshToken: refresh_token
+
